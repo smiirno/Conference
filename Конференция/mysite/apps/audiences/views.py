@@ -5,7 +5,8 @@ from .models import Audience, Lecture
 
 def index(request):
     audiences_list = Audience.objects.order_by('audience_number')
-    return render(request, 'audiences/list.html', {'audiences_list': audiences_list})
+    lectures_list = Lecture.objects.order_by('audience')
+    return render(request, 'audiences/list.html', {'audiences_list': audiences_list, 'lectures_list': lectures_list})
 
 
 def detail(request, audience_number):
