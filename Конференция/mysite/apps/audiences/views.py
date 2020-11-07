@@ -1,5 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 from .models import Audience, Lecture
 
 
@@ -15,4 +16,8 @@ def detail(request, audience_number):
     except:
         raise Http404('Страница не найдена')
 
-    return render(request, 'audiences/detail.html', {'audience': a})
+    a.comment_set.create(lecture_title=request.POST['name'], speaker_name=request.POST['text'])
+
+    return HttpResponseRedirect(reverse('audiences:list', args=a.audience_number))
+
+

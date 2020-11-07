@@ -5,8 +5,8 @@
 {% block content %}
 
     {% if audiences_list %}
-
 <div class="container">
+    <a href="{% url 'audience_number:detail' audience_number %}">Добавить лекцию</a>
     {% for a in audiences_list %}
     <h2>Аудитория №{{a.audience_number}} :</h2>
         {% for l in lectures_list %}
@@ -18,24 +18,7 @@
     {% endfor %}
 
 </div>
-<!--<table class="table">-->
-<!--    <thead class="thead-dark">-->
-<!--        <tr>-->
-<!--            <th scope="col">Время</th>-->
-<!--                {% for a in audiences_list %}-->
-<!--                        <th scope="col">Аудитория №{{a.audience_number}}</th>-->
-<!--                {% endfor %}-->
-<!--        </tr>-->
-<!--    </thead>-->
 
-<!--    <tbody>-->
-<!--        <td>-->
-<!--            {% for l in lectures_list %}-->
-<!--                        <th scope="col">{{l.audience.audience_number}}</th>-->
-<!--            {% endfor %}-->
-<!--        </td>-->
-<!--    </tbody>-->
-<!--</table>-->
     {% else %}
         Статьи не найдены
     {% endif %}
