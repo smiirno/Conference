@@ -5,18 +5,32 @@
 {% block content %}
 
     {% if audiences_list %}
+
+
 <div class="container">
-    <a href="{% url 'audience_number:detail' audience_number %}">Добавить лекцию</a>
     {% for a in audiences_list %}
     <h2>Аудитория №{{a.audience_number}} :</h2>
         {% for l in lectures_list %}
                 {% if a.audience_number == l.audience.audience_number %}
                 <h5>{{l.lecture_title}}, Спикер: {{l.speaker_name}}, Время проведения: {{l.start_time}} - {{l.end_time}}</h5>
-                <button type="button" class="btn btn-outline-primary btn-sm">Записаться</button>
+                <button type="button" class="btn btn-outline-primary btn-sm">Записаться</button><br>
                 {% endif %}
         {% endfor %}
     {% endfor %}
 
+    <form action="#" method="POST">
+        <div class="row">
+            <div class="col-4">
+                {% csrf_token %}
+                <input class="form-control" type="number", placeholder="Номер аудитории" name="audience"><br>
+                <input class="form-control" type="text" required placeholder="Название лекции" name="lecture_title"><br>
+                <input class="form-control" type="text", placeholder="Имя спикера", name="speaker_name"><br>
+                <input class="form-control" type="time", placeholder="Время начала лекции", name="start_time"><br>
+                <input class="form-control" type="time", placeholder="Время окончания лекции", name="end_time"><br>
+                <button class="btn btn-outline-primary", type="submit">Добавить лекцию</button><br>
+            </div>
+        </div>
+    </form>
 </div>
 
     {% else %}

@@ -18,6 +18,5 @@ def detail(request, audience_number):
 
     a.comment_set.create(lecture_title=request.POST['name'], speaker_name=request.POST['text'])
 
-    return HttpResponseRedirect(reverse('audiences:list', args=a.audience_number))
-
-
+    return render(request, 'audiences/detail.html', {'audience_number': a})
+    # return HttpResponseRedirect(reverse('audiences:list', args=a.audience_number))
