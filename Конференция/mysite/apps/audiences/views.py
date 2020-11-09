@@ -20,3 +20,9 @@ def detail(request, audience_number):
 
     return render(request, 'audiences/detail.html', {'audience_number': a})
     # return HttpResponseRedirect(reverse('audiences:list', args=a.audience_number))
+
+
+def lectures(request):
+    audiences_list = Audience.objects.order_by('audience_number')
+    lectures_list = Lecture.objects.order_by('audience')
+    return render(request, 'audiences/lectures.html', {'audiences_list': audiences_list, 'lectures_list': lectures_list})

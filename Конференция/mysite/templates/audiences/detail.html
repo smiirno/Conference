@@ -3,12 +3,6 @@
 {% block title %} Аудитория № {{a.audience_number}} {% endblock %}
 
 {% block content %}
-<form action="{% url 'detail' %}" method="POST">
-    {% csrf_token %}
-    <input type="text" required placeholder="Название лекции" name="lecture_title"><br>
-    <textarea placeholder="Имя спикера" name="speaker_name"></textarea>
-    <button type="submit">Добавить лекцию</button>
-</form>
 
 
 
