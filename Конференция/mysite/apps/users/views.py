@@ -8,5 +8,6 @@ from django.contrib.auth.models import User
 def index(request):
     return render(request, 'users/registration.html')
 
+
 def detail(requests):
     return render(requests, 'users/login.html')
