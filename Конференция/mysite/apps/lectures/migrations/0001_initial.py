@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ('speaker_name', models.CharField(max_length=50, verbose_name='Имя спикера')),
                 ('start_time', models.DateTimeField(verbose_name='Время начала доклада')),
                 ('end_time', models.DateTimeField(verbose_name='Время конца доклада')),
-                ('audience', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='audiences.Audience')),
+                ('audience', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='lectures.Audience')),
             ],
         ),
     ]

@@ -40,8 +40,7 @@ router.register(r'users', UserViewSet)
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
     path('registration/', include('users.urls')),
-    # path('audiences/', include('audiences.urls')),
     path('admin/', admin.site.urls),
-    path('', include('audiences.urls')),
+    path('', include('lectures.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
