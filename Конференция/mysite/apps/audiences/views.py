@@ -1,5 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.urls import reverse
 from .models import Audience, Lecture
 
@@ -7,19 +8,25 @@ from .models import Audience, Lecture
 def index(request):
     audiences_list = Audience.objects.order_by('audience_number')
     lectures_list = Lecture.objects.order_by('audience')
-    return render(request, 'audiences/list.html', {'audiences_list': audiences_list, 'lectures_list': lectures_list})
 
+    if request.method == 'POST':
+        audience = request.POST.get('audience')
+        lecture_title = request.POST.get('lecture_title')
+        speaker_name = request.POST.get('speaker_name')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
 
-def detail(request, audience_number):
-    try:
-        a = Audience.objects.get(number=audience_number)
-    except:
-        raise Http404('Страница не найдена')
+        a = Lecture(audience=audience,
+                    lecture_title=lecture_title,
+                    speaker_name=speaker_name,
+                    start_time=start_time,
+                    end_time=end_time)
 
-    a.comment_set.create(lecture_title=request.POST['name'], speaker_name=request.POST['text'])
+        a.save()
 
-    return render(request, 'audiences/detail.html', {'audience_number': a})
-    # return HttpResponseRedirect(reverse('audiences:list', args=a.audience_number))
+        return redirect('')
+    else:
+        return render(request, 'audiences/list.html', {'audiences_list': audiences_list, 'lectures_list': lectures_list})
 
 
 def lectures(request):
