@@ -16,23 +16,21 @@ def index(request):
             audiences_list.append(audience)
 
     audiences_list.sort()
-    # if request.method == 'POST':
-    #     audience_number = request.POST.get('audience')
-    #     lecture_title = request.POST.get('lecture_title')
-    #     speaker_name = request.POST.get('speaker_name')
-    #     start_time = request.POST.get('start_time')
-    #     end_time = request.POST.get('end_time')
-    #
-    #     a = Lecture(audience_number=audience_number,
-    #                 lecture_title=lecture_title,
-    #                 speaker_name=speaker_name,
-    #                 start_time=start_time,
-    #                 end_time=end_time)
-    #
-    #     a.save()
-    #
-    #     return redirect('')
-    # else:
+    if request.method == 'POST':
+        audience_number = request.POST.get('audience')
+        lecture_title = request.POST.get('lecture_title')
+        speaker_name = request.POST.get('speaker_name')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+
+        a = Lecture(audience_number=audience_number,
+                    lecture_title=lecture_title,
+                    speaker_name=speaker_name,
+                    start_time=start_time,
+                    end_time=end_time)
+
+        a.save()
+
     return render(request, 'lectures/list.html', {'lectures_list': lectures_list, 'audiences_list': audiences_list,
                                                   'unsorted_audiences_list': unsorted_audiences_list})
 
