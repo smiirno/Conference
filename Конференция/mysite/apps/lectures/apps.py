@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AudiencesConfig(AppConfig):
-    name = 'audiences'
+class LecturesConfig(AppConfig):
+    name = 'lectures'
     verbose_name = 'Создать'

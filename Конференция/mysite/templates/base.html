@@ -7,6 +7,30 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
+{% block header %}
+<nav class="navbar sticky-top navbar-dark navbar-expand-lg bg-dark">
+        <div class="container" >
+            <div>
+                <ul class="nav navbar-nav mr-auto">
+                    {% if user.is_superuser %}
+                    <li class="active"><a href="/admin"><button class="btn btn-default">Админка</button></a></li>
+                    {% endif %}
+                    <li class="active"><a href="http://127.0.0.1:8000/"><button class="btn btn-dark" style="border-radius: 50px">Главная</button></a></li>
+                    {% if user.is_authenticated %}
+                    <li class="active"><a href="#">{{user.username}}</a></li>
+                    <li class="active"><a href="{% url 'logout' %}"><button class="btn btn-dark" style="border-radius: 50px">Выйти</button></a></li>
+                    {% else %}
+                    <li class="active"><a href="{% url 'signup' %}"><button class="btn btn-dark" style="border-radius: 50px">Зарегистрироваться</button></a></li>
+                    <li class="active"><a href="/accounts/login/"><button class="btn btn-dark" style="border-radius: 50px">Войти</button></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+<br><br>
+{% endblock %}
+
+
 {% block content %}
 
 {% endblock %}

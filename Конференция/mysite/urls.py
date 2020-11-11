@@ -39,8 +39,10 @@ router.register(r'users', UserViewSet)
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
 urlpatterns = [
-    path('audiences', include('audiences.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('users.urls')),
+    path('registration/', include('users.urls')),
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
+    path('', include('lectures.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
