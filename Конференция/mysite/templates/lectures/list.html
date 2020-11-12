@@ -13,30 +13,40 @@
         {% for l in lectures_list %}
                 {% if a == l.audience_number %}
                 <h5>{{l.lecture_title}}, Спикер: {{l.speaker_name}}, Время проведения: {{l.start_time}} - {{l.end_time}}</h5>
-                <button type="button" class="btn btn-outline-primary btn-sm">Записаться</button><br>
+                <div class="dropdown">
+                    <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Показать описание</button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% if l.description %}
+                        <a class="dropdown-item" href="#">{{ l.description }}</a>
+                        {% else %}
+                        <a class="dropdown-item" href="#">Описание отсутствует</a>
+                        {% endif %}
+                    </div>
+                </div>
+
                 {% endif %}
         {% endfor %}
     {% endfor %}
-
-    <form action="#" method="POST">
+{% if not user.is_authenticated or user.is_superuser %}
+    <form method="POST">
         <div class="row">
             <div class="col-4">
                 {% csrf_token %}
                 <input class="form-control" type="number", placeholder="Номер аудитории" name="audience"><br>
                 <input class="form-control" type="text" required placeholder="Название лекции" name="lecture_title"><br>
                 <input class="form-control" type="text", placeholder="Имя спикера", name="speaker_name"><br>
-                <input class="form-control" type="time", placeholder="Время начала лекции", name="start_time"><br>
-                <input class="form-control" type="time", placeholder="Время окончания лекции", name="end_time"><br>
+                <input class="form-control" type="text", placeholder="Описание", name="description"><br>
+                <input class="form-control" type="datetime-local", placeholder="Время начала лекции", name="start_time"><br>
+                <input class="form-control" type="datetime-local", placeholder="Время окончания лекции", name="end_time"><br>
                 <button class="btn btn-outline-primary", type="submit">Добавить лекцию</button><br>
             </div>
         </div>
     </form>
+    {% endif %}
 </div>
 {% else %}
-    {% for l in lectures_list %}
-    <h5>{{l.lecture_title}}</h5>
-    {% endfor %}
-    <h5>Номера аудиторий не найдены</h5>
+    <h5>Аудитории не найдены</h5>
 {% endif %}
 
 

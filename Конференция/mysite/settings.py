@@ -128,8 +128,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/my_lectures/'
-LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/my_lectures/'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
+LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000'
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
