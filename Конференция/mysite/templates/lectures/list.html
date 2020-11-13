@@ -36,7 +36,9 @@
                 <input class="form-control" type="number", placeholder="Номер аудитории" name="audience"><br>
                 <input class="form-control" type="text" required placeholder="Название лекции" name="lecture_title"><br>
                 <input class="form-control" type="text", placeholder="Имя спикера", name="speaker_name"><br>
-                <input class="form-control" type="text", placeholder="Описание", name="description"><br>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Описание" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
                 <input class="form-control" type="datetime-local", placeholder="Время начала лекции", name="start_time"><br>
                 <input class="form-control" type="datetime-local", placeholder="Время окончания лекции", name="end_time"><br>
                 <button class="btn btn-outline-primary", type="submit">Добавить лекцию</button><br>
