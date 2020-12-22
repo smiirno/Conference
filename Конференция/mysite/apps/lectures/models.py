@@ -5,6 +5,10 @@ from django.utils import timezone
 class Audience(models.Model):
     audience_number = models.IntegerField('Номер аудитории', default=0)
 
+    class Meta:
+        verbose_name = 'Аудитория'
+        verbose_name_plural = 'Аудитории'
+
 
 class Lecture(models.Model):
     audience_number = models.ForeignKey(Audience, on_delete=models.CASCADE)

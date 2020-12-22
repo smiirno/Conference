@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import Lecture
+from .models import Lecture, Audience
 from random import random
 
 
