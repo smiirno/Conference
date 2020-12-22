@@ -1,9 +1,33 @@
 {% extends 'base.html' %}
 
-{% block title %} Мои лекции {% endblock %}
+{% block title %} Аудитория № {{lectures.audience_number.audience_number}} {% endblock %}
 
 {% block content %}
 
+<div class="container">
+    <h5>{{lectures.lecture_title}}, Спикер: {{lectures.speaker_name}}, Время проведения: {{lectures.start_time}} - {{lectures.end_time}}</h5>
+    <div class="dropdown">
+        <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Показать описание</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% if lectures.description %}
+            <a class="dropdown-item" href="#">{{ l.description }}</a>
+            {% else %}
+            <a class="dropdown-item" href="#">Описание отсутствует</a>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    <form action="{% url 'lecture:add_lecture' lectures.audience_number.audience_number %}" method="post">
 
+        {% csrf_token %}
+        <input class="form-control" type="text" required placeholder="Название лекции" name="lecture_title"><br>
+        <input class="form-control" type="text" required placeholder="Имя спикера" name="speaker_name"><br>
+        <input class="form-control" type="text" required placeholder="Описание" name="description"><br>
+        <input class="form-control" type="datetime-local", placeholder="Время начала лекции", name="start_time"><br>
+        <input class="form-control" type="datetime-local", placeholder="Время окончания лекции", name="end_time"><br>
+        <button type="submit">Добавить</button>
+    </form>
 
+</div>
 {% endblock %}
