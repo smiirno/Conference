@@ -12,15 +12,8 @@ from random import random
 def index(request):
 
     lectures_list = Lecture.objects.order_by('start_time')
+    audiences_list = Audience.objects.all()
 
-    unsorted_audiences_list = Lecture.objects.values_list('audience_number', flat=True)
-    audiences_list = []
-
-    for audience in unsorted_audiences_list:
-        if audience not in audiences_list:
-            audiences_list.append(audience)
-
-    audiences_list.sort()
     if request.method == 'POST':
         audience_number = request.POST.get('audience')
         lecture_title = request.POST.get('lecture_title')
@@ -38,8 +31,7 @@ def index(request):
 
         a.save()
 
-    return render(request, 'lectures/list.html', {'lectures_list': lectures_list, 'audiences_list': audiences_list,
-                                                  'unsorted_audiences_list': unsorted_audiences_list})
+    return render(request, 'lectures/list.html', {'lectures_list': lectures_list, 'audiences_list': audiences_list})
 
 
 def lectures(request):
