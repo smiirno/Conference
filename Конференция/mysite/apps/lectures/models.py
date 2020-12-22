@@ -2,8 +2,12 @@ from django.db import models
 from django.utils import timezone
 
 
-class Lecture(models.Model):
+class Audience(models.Model):
     audience_number = models.IntegerField('Номер аудитории', default=0)
+
+
+class Lecture(models.Model):
+    audience_number = models.ForeignKey(Audience, on_delete=models.CASCADE)
     lecture_title = models.CharField('Название лекции', max_length=50)
     speaker_name = models.CharField('Имя спикера', max_length=50)
     description = models.TextField('Описание', default='', max_length=150)
