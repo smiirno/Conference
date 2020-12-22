@@ -10,21 +10,6 @@ from random import random
 
 
 def index(request):
-    # _audience_number = [1, 2, 3, 4, 5, 6, 7]
-    # _lecture_title = ['Математика', 'Русский язык', 'Английский язык', 'Литература', 'Музыка', 'Кино', 'Спорт']
-    # _speaker_name = ['Павел', 'Андрей', 'Артем', 'Константин', 'Мария', ]
-    # _description = 'Какое то описание'
-    # _start_time = timezone.now()
-    # _end_time = timezone.now()
-    # for i in range(0, 5):
-    #     a = Lecture(audience_number=random.choice(_audience_number),
-    #                 lecture_title=random.choice(_lecture_title),
-    #                 speaker_name=random.choice(_speaker_name),
-    #                 description=_description,
-    #                 start_time=_start_time,
-    #                 end_time=_end_time)
-    #
-    #     a.save()
 
     lectures_list = Lecture.objects.order_by('start_time')
 
