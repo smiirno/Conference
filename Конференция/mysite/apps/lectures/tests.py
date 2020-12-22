@@ -27,6 +27,11 @@ class BlogTests(TestCase):
         lecture = Lecture(lecture_title='A sample title')
         self.assertEqual(str(lecture), lecture.lecture_title)
 
+    def test_input(self):
+        self.assertTrue(f'{self.lecture.audience_number}'.isdigit())
+        self.assertTrue(f'{self.lecture.lecture_title}'.isalpha())
+        self.assertTrue(f'{self.lecture.speaker_name}'.isalpha())
+
     def test_lecture_content(self):
         self.assertEqual(f'{self.lecture.lecture_title}', 'A good title')
         self.assertEqual(f'{self.lecture.speaker_name}', 'testuser')
