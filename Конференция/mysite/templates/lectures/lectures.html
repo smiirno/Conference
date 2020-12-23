@@ -18,7 +18,7 @@
         </div>
     </div>
     <br>
-    <form action="{% url 'lecture:add_lecture' lectures.audience_number.audience_number %}" method="post">
+    <form action="{% url 'lecture:add_lecture' lectures.audience_number.audience_number %}" method="POST">
 
         {% csrf_token %}
         <input class="form-control" type="text" required placeholder="Название лекции" name="lecture_title"><br>
